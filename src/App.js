@@ -9,6 +9,13 @@ import { tokenUrl, instanceLocator } from "./config";
 import "./App.css";
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      messages: []
+    };
+  }
+
   componentDidMount() {
     const chatManager = new ChatManager({
       instanceLocator,
@@ -24,6 +31,9 @@ class App extends React.Component {
         hooks: {
           onMessage: message => {
             console.log("recieved message: ", message.parts[0].payload.content);
+            this.setState({
+              messages: [...this.state.messages, message]
+            });
           }
         }
       });
@@ -31,9 +41,10 @@ class App extends React.Component {
   }
 
   render() {
+    console.log('this.state.messages:', this.state.messages);
     return (
       <div className="App">
-        <MessageList />
+        <MessageList messages={this.state.messages}/>
       </div>
     );
   }
