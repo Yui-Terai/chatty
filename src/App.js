@@ -2,7 +2,7 @@ import React from "react";
 // import { default as Chatkit } from '@pusher/chatkit-server';
 import { ChatManager, TokenProvider } from "@pusher/chatkit-client";
 import MessageList from "./components/MessageList";
-// import SendMessageForm from './components/SendMessageForm';
+import SendMessageForm from "./components/SendMessageForm";
 // import RoomList from './components/RoomList';
 // import NewRoomForm from './components/NewRoomForm';
 import { tokenUrl, instanceLocator } from "./config";
@@ -41,10 +41,11 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('this.state.messages:', this.state.messages);
+    console.log("this.state.messages:", this.state.messages);
     return (
       <div className="App">
-        <MessageList messages={this.state.messages}/>
+        <MessageList messages={this.state.messages} />
+        <SendMessageForm />
       </div>
     );
   }
