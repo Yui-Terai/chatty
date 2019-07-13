@@ -33,6 +33,7 @@ class SendMessageForm extends React.Component {
           value={this.state.message}
           placeholder="type anything!"
           type="text"
+          disabled={this.props.disabled}
         />
       </form>
     );
