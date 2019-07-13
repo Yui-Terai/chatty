@@ -25,7 +25,7 @@ class App extends React.Component {
   componentDidMount() {
     const chatManager = new ChatManager({
       instanceLocator,
-      userId: "yui",
+      userId: "miguel",
       tokenProvider: new TokenProvider({
         url: tokenUrl
       })
@@ -54,22 +54,23 @@ class App extends React.Component {
 
   subscribeToRoom(roomId) {
     this.setState({ messages: [] });
-    this.currentUser.subscribeToRoomMultipart({
-      roomId: roomId,
-      hooks: {
-        onMessage: message => {
-          console.log("recieved message: ", message.parts[0].payload.content);
-          this.setState({
-            messages: [...this.state.messages, message]
-          });
+    this.currentUser
+      .subscribeToRoomMultipart({
+        roomId: roomId,
+        hooks: {
+          onMessage: message => {
+            console.log("recieved message: ", message.parts[0].payload.content);
+            this.setState({
+              messages: [...this.state.messages, message]
+            });
+          }
         }
-      }
-    })
-    .then(room => {
-      this.setState({roomId: room.id})
-      this.getRooms()
-    })
-    .catch(err => console.log("error on subscribe to room: ", err));
+      })
+      .then(room => {
+        this.setState({ roomId: room.id });
+        this.getRooms();
+      })
+      .catch(err => console.log("error on subscribe to room: ", err));
   }
 
   sendMessage(text) {
@@ -84,6 +85,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <RoomList
+          roomId={this.state.roomId}
           subscribeToRoom={this.subscribeToRoom}
           rooms={[...this.state.joinableRooms, ...this.state.joinedRooms]}
         />
