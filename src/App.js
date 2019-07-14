@@ -93,7 +93,7 @@ class App extends React.Component {
   render() {
     console.log("this.state.messages:", this.state.messages);
     return (
-      <div className="App">
+      <div className="app">
         <RoomList
           roomId={this.state.roomId}
           subscribeToRoom={this.subscribeToRoom}
