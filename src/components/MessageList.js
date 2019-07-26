@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Message from "./Message";
+import Emoji from "react-emoji-render";
 
 class MessageList extends React.Component {
   componentWillUpdate() {
@@ -20,7 +21,11 @@ class MessageList extends React.Component {
     if (!this.props.roomId) {
       return (
         <div className="message-list">
-          <div className="join-room">&larr; Join a room!</div>
+          <div className="join-room">
+            <Emoji text="⬅️" />&nbsp;
+            Join a Room
+            <Emoji text="🌼🐝" />
+          </div>
         </div>
       );
     }

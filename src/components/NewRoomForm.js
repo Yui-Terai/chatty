@@ -31,7 +31,7 @@ class NewRoomForm extends React.Component {
           <input
             onChange={this.handleChange}
             value={this.state.roomName}
-            placeholder="add group"
+            placeholder="Creat a room"
             type="text"
             required
           />
